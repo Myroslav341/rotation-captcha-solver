@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="content">
+    <h3 style="text-align: center; margin-top: 50px;">Captcha you passed</h3>
+    <div style="margin: auto; width: 500px; display: flex; flex-direction: column;">
+        <img src="{{url_for('static', filename=file_name)}}" style="width: 200px; margin: auto;">
+        <div id="answer" style="margin: auto; display: flex; flex-direction: column;">
+            <div class="spinner-border" role="status" id="loader">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+        <a href="{{ url_for('CaptchaSolverViews.solver_page') }}" class="badge badge-primary" style="height: 32px; width: 180px; margin: auto; font-size: 20px; margin-top: 20px;">Solve one more</a>
+    </div>
+</div>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+<script>
+async function checkAnswerReady(){
+    const response = await axios.get('{{check_url}}');
+
+    const data = response.data;
+
+    if (!data?.answer) {
+        setTimeout(checkAnswerReady, 1000);
+        return;
+    }
+
+    const loader = document.getElementById("loader");
+
+    const angelWrapper = document.createElement("h4");
+    const answerWrapper = document.getElementById("answer");
+    const angel = document.createTextNode(`Target rotation angel: ${data.answer}`);
+    angelWrapper.setAttribute("style", "width: 100%; text-align: center;")
+    angelWrapper.appendChild(angel);
+
+    const imgSolved = document.createElement("img");
+    imgSolved.setAttribute("src", data.rotated_picture_link)
+    imgSolved.setAttribute("style", "width: 200px; margin: auto;")
+
+    answerWrapper.removeChild(loader);
+    answerWrapper.appendChild(angelWrapper);
+    answerWrapper.appendChild(imgSolved);
+};
+checkAnswerReady();
+</script>
+{% endblock %}

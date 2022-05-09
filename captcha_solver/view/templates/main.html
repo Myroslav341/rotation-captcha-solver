@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+<div class="content" style="display: flex; flex-direction: column;">
+  <h2 style="text-align: center; width: 400px; margin: auto; margin-top: 100px;">Rotation captcha solver</h2>
+  <div id="images" style="display: flex; flex-direction: row; margin: auto; width: 90%; justify-content: space-evenly; margin-top: 20px;">
+    <img src="{{url_for('static', filename='static/87e4e797-c5c0-483f-aee5-256348c65137.png')}}">
+    <img src="{{url_for('static', filename='static/90b4710f-325e-4d70-8db3-88ffcba7bd17.png')}}">
+    <img src="{{url_for('static', filename='static/7229800f-d7b2-4184-a6d2-6d04383df994.png')}}">
+    <img src="{{url_for('static', filename='static/add54443-c322-41af-bcce-fef51df4d948.png')}}">
+    <img src="{{url_for('static', filename='static/solved_d1bc31e2-e6d3-4f76-97e0-fbd9d003f969.png')}}">
+    <img src="{{url_for('static', filename='static/d1bc31e2-e6d3-4f76-97e0-fbd9d003f969.png')}}">
+    <img src="{{url_for('static', filename='static/ea820388-b34b-447f-8213-e268f77db395.png')}}">
+  </div>
+  <a href="{{ url_for('CaptchaSolverViews.solver_page') }}" class="badge badge-primary" style="height: 32px; width: 180px; margin: auto; font-size: 20px; margin-top: 20px;">Start solving</a>
+</div>
+{% endblock %}
+
