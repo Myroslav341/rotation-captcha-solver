@@ -1,8 +1,8 @@
 # Rotation captcha solver
 
-University project to use NN in the python flask WEB app. 
+Use NN in the Python Flask WEB app. 
 
-Solving rotation captcha class by providing the target angel and the result picture after rotation.
+Solving rotation captcha by providing the target angle and the resulting picture afterward.
 
 ## Demo 
 
